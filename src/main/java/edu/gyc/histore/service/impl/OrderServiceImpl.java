@@ -14,6 +14,7 @@ import edu.gyc.histore.service.OrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import edu.gyc.histore.service.ProductService;
 import edu.gyc.histore.utils.KeyUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,6 +58,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
             }
             amount = product.getProductPrice().multiply(new BigDecimal(orderDetail.getProductQuantity()))
                     .add(amount);
+
+            BeanUtils.copyProperties(product,orderDetail);
         }
 
         //减库存
