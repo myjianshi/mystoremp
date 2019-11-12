@@ -92,10 +92,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
     public PageInfo<Order> findList(String buyerOpenid, int start, int size) {
         PageHelper.startPage(start, size);
         List<Order> orders=lambdaQuery().eq(Order::getBuyerOpenid,buyerOpenid).list();
-        for (Order order : orders) {
-            List<OrderDetail> orderDetails = orderDetailService.findOrderDetailsByOrderId(order.getId());
-            order.setOrderDetailList(orderDetails);
-         }
         PageInfo<Order> orderPageInfo = new PageInfo<>(orders);
         return orderPageInfo;
     }
@@ -126,6 +122,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
        }
        order1.setOrderStatus(OrderStatusEnum.CANCEL.getCode());
        //若已支付还要退钱
+        if (order1.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
+            //TODO
+        }
 
         return order1;
     }
@@ -182,11 +181,29 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
     public PageInfo<Order> findList(int start, int size) {
         PageHelper.startPage(start, size);
         List<Order> orders=list();
-        for (Order order : orders) {
-            List<OrderDetail> orderDetails = orderDetailService.findOrderDetailsByOrderId(order.getId());
-            order.setOrderDetailList(orderDetails);
-        }
         PageInfo<Order> orderPageInfo = new PageInfo<>(orders);
         return orderPageInfo;
     }
+
+
+    @Override
+    public Order findOrderOne(String openid, Long orderId) {
+        Order order = getById(orderId);
+        if (order == null) {
+
+            return null;
+        }
+        if(!order.getBuyerOpenid().equalsIgnoreCase(openid)){
+            log.error("查询订单时 订单的openid不一致 查询openid={} order openid={}",openid,order.getBuyerOpenid());
+            throw new SellException(ResultEnum.ORDER_OWNER_ERROR);
+        }
+
+        List<OrderDetail> orderDetails = orderDetailService.findOrderDetailsByOrderId(orderId);
+        if (orderDetails.isEmpty()) {
+            new SellException(ResultEnum.ORDER_DETAIL_EMPTY);
+        }
+        order.setOrderDetailList(orderDetails);
+        return  order;
+    }
+
 }

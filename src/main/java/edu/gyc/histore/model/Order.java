@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import edu.gyc.histore.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -30,6 +33,7 @@ public class Order implements Serializable {
     private  List<OrderDetail> orderDetailList;
 
 
+    @JsonProperty("orderId")
     private Long id;
 
     /**
@@ -70,11 +74,13 @@ public class Order implements Serializable {
     /**
      * 创建时间
      */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private LocalDateTime createTime;
 
     /**
      * 修改时间
      */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private LocalDateTime updateTime;
 
 

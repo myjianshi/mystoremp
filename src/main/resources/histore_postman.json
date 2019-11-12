@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "a93a9b20-c022-4e07-adf1-0330006eacae",
+		"name": "hisell",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listOrder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/buyer/order/list?openid= 520ls&page= 1&size= 2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"buyer",
+						"order",
+						"list"
+					],
+					"query": [
+						{
+							"key": "openid",
+							"value": " 520ls"
+						},
+						{
+							"key": "page",
+							"value": " 1"
+						},
+						{
+							"key": "size",
+							"value": " 2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancelOrder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

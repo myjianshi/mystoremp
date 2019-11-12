@@ -65,7 +65,7 @@ class OrderServiceImplTest {
     }
     @Test
     void findList() {
-       PageInfo<Order>  orderPageInfo=orderService.findList("110119", 2, 2);
+       PageInfo<Order>  orderPageInfo=orderService.findList("110119", 0, 10);
        List<Order> orders=orderPageInfo.getList();
         for (Order order : orders) {
             log.info("Id {} order {}","110119",order.getOrderDetailList());
