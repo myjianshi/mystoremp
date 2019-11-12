@@ -1,6 +1,7 @@
 package edu.gyc.histore.service.impl;
 
-import com.baomidou.mybatisplus.annotation.TableField;
+
+import com.github.pagehelper.PageInfo;
 import edu.gyc.histore.model.Order;
 import edu.gyc.histore.model.OrderDetail;
 import edu.gyc.histore.service.OrderService;
@@ -64,21 +65,40 @@ class OrderServiceImplTest {
     }
     @Test
     void findList() {
+       PageInfo<Order>  orderPageInfo=orderService.findList("110119", 2, 2);
+       List<Order> orders=orderPageInfo.getList();
+        for (Order order : orders) {
+            log.info("Id {} order {}","110119",order.getOrderDetailList());
+        }
+
     }
 
     @Test
     void cancel() {
+        Order order=new Order();
+        order.setId(1573469968426L);
+
+        orderService.cancel(order);
     }
 
     @Test
     void finish() {
+        Order order=new Order();
+        order.setId(1573469367106L);
+
+        orderService.finish(order);
     }
 
     @Test
     void paid() {
+        Order order=new Order();
+        order.setId(1573227449562543494L);
+
+        orderService.paid(order);
     }
 
     @Test
     void testFindList() {
+        log.info(orderService.findList(2,3).getList().toString());
     }
 }
