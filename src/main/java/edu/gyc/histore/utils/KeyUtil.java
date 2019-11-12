@@ -18,6 +18,6 @@ public class KeyUtil {
         Integer number = random.nextInt(900000) + 100000;
 
 
-        return System.currentTimeMillis() + number;
+        return System.currentTimeMillis()*1000000 + number;
     }
 }

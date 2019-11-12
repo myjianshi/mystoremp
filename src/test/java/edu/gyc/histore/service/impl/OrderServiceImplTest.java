@@ -36,11 +36,11 @@ class OrderServiceImplTest {
         List<OrderDetail> orderDetailList = new ArrayList<>();
         OrderDetail o1 = new OrderDetail();
         o1.setProductId(1L);
-        o1.setProductQuantity(3);
+        o1.setProductQuantity(5);
 
         OrderDetail o2 = new OrderDetail();
         o2.setProductId(2L);
-        o2.setProductQuantity(5);
+        o2.setProductQuantity(8);
 
         orderDetailList.add(o1);
         orderDetailList.add(o2);
@@ -76,7 +76,7 @@ class OrderServiceImplTest {
     @Test
     void cancel() {
         Order order=new Order();
-        order.setId(1573469968426L);
+        order.setId(1573227951619768099L);
 
         orderService.cancel(order);
     }

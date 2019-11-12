@@ -101,6 +101,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
     }
 
     @Override
+    @Transactional
     public Order cancel(Order order) {
         Order order1 = getById(order.getId());
         if (order1 == null) {
@@ -130,6 +131,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
     }
 
     @Override
+    @Transactional
     public Order finish(Order order) {
         Order order1 = getById(order.getId());
         if (order1 == null) {
@@ -148,6 +150,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
     }
 
     @Override
+    @Transactional
     public Order paid(Order order) {
         Order order1 = getById(order.getId());
         if (order1 == null) {
