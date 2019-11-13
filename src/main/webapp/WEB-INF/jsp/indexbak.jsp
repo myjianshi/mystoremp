@@ -10,7 +10,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
-            <table class="table">
+            <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>订单Id</th>
