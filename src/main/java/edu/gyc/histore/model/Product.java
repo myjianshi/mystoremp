@@ -24,6 +24,7 @@ public class Product implements Serializable {
     /**
      * 商品名称
      */
+
     private String productName;
 
     /**
