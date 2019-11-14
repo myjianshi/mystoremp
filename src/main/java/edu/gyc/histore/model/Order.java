@@ -5,8 +5,12 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import edu.gyc.histore.enums.OrderStatusEnum;
+import edu.gyc.histore.enums.PayStatusEnum;
+import edu.gyc.histore.utils.EnumUtil;
 import edu.gyc.histore.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -32,7 +36,14 @@ public class Order implements Serializable {
     @TableField(exist = false)
     private  List<OrderDetail> orderDetailList;
 
-
+    @JsonIgnore   //输出json数据时忽略
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
     @JsonProperty("orderId")
     private Long id;
 
