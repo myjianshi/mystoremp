@@ -42,8 +42,8 @@
                         <td>${girl.buyerPhone}</td>
                         <td>${girl.buyerAddress}</td>
                         <td>${girl.orderAmount}</td>
-                        <td>${girl.orderStatus}</td>
-                        <td>${girl.payStatus}</td>
+                        <td>${girl.getOrderStatusEnum().message}</td>
+                        <td>${girl.getPayStatusEnum().message}</td>
                         <td>${girl.createTime}</td>
                         <td>${girl.updateTime}</td>
                         <td><a href="editGirl?id=${girl.id}">Detail</a> </td>
