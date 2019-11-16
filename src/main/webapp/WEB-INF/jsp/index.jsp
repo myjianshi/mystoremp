@@ -4,7 +4,7 @@
 
 <%@include file="/WEB-INF/jsp/common/header.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
 <body>
 <div id="wrapper" class="toggled">
 
