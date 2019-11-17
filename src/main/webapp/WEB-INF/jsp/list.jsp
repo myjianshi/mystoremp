@@ -23,19 +23,19 @@
             <th>Detail</th>
             <th>Cancel</th>
         </tr>
-        <c:forEach var="girl" items="${page.list}" varStatus="st">
+        <c:forEach var="order" items="${page.list}" varStatus="st">
             <tr>
-                <td>${girl.id}</td>
-                <td>${girl.buyerName}</td>
-                <td>${girl.buyerPhone}</td>
-                <td>${girl.buyerAddress}</td>
-                <td>${girl.orderAmount}</td>
-                <td>${girl.orderStatus}</td>
-                <td>${girl.payStatus}</td>
-                <td>${girl.createTime}</td>
-                <td>${girl.updateTime}</td>
-                <td><a href="editGirl?id=${girl.id}">Detail</a> </td>
-                <td><a href="delGirl?id=${girl.id}">Cancel</a> </td>
+                <td>${order.id}</td>
+                <td>${order.buyerName}</td>
+                <td>${order.buyerPhone}</td>
+                <td>${order.buyerAddress}</td>
+                <td>${order.orderAmount}</td>
+                <td>${order.orderStatus}</td>
+                <td>${order.payStatus}</td>
+                <td>${order.createTime}</td>
+                <td>${order.updateTime}</td>
+                <td><a href="editorder?id=${order.id}">Detail</a> </td>
+                <td><a href="delorder?id=${order.id}">Cancel</a> </td>
 
             </tr>
         </c:forEach>
@@ -50,7 +50,7 @@
         <a href="?start=${page.pages}">末页</a>
 
     </div>
-    <form action="addGirl" method="post">
+    <form action="addorder" method="post">
 
         name: <input name="name"> <br>
         price: <input name="price"> <br>

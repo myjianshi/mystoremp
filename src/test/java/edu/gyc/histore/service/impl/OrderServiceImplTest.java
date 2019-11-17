@@ -25,30 +25,32 @@ class OrderServiceImplTest {
     private OrderService orderService;
     @Test
     void create() {
+for(int i=0;i<20;i++){
+    Order Order = new Order();
+    Order.setBuyerName("鲁梦");
+    Order.setBuyerAddress("贵州大学");
+    Order.setBuyerPhone("123456789012");
+    Order.setBuyerOpenid("520ls");
 
-        Order Order = new Order();
-        Order.setBuyerName("鲁梦");
-        Order.setBuyerAddress("贵州大学");
-        Order.setBuyerPhone("123456789012");
-        Order.setBuyerOpenid("520ls");
+    //购物车
+    List<OrderDetail> orderDetailList = new ArrayList<>();
+    OrderDetail o1 = new OrderDetail();
+    o1.setProductId(1L);
+    o1.setProductQuantity(1+i);
 
-        //购物车
-        List<OrderDetail> orderDetailList = new ArrayList<>();
-        OrderDetail o1 = new OrderDetail();
-        o1.setProductId(1L);
-        o1.setProductQuantity(5);
+    OrderDetail o2 = new OrderDetail();
+    o2.setProductId(2L);
+    o2.setProductQuantity(25-i);
 
-        OrderDetail o2 = new OrderDetail();
-        o2.setProductId(2L);
-        o2.setProductQuantity(8);
+    orderDetailList.add(o1);
+    orderDetailList.add(o2);
 
-        orderDetailList.add(o1);
-        orderDetailList.add(o2);
+    Order.setOrderDetailList(orderDetailList);
 
-        Order.setOrderDetailList(orderDetailList);
+    Order resultOrder = orderService.create(Order);
+    log.info("Create order: {}",resultOrder);
+}
 
-        Order resultOrder = orderService.create(Order);
-        log.info("Create order: {}",resultOrder);
     }
 
     @Test

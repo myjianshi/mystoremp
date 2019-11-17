@@ -45,7 +45,7 @@ class ProductServiceImplTest {
             productInfo.setProductName("美女"+i);
             productInfo.setProductPrice(new BigDecimal(666));
             productInfo.setProductStock(100);
-            productInfo.setProductDescription("很好的girl");
+            productInfo.setProductDescription("很好的order");
             productInfo.setProductIcon("http://xxxxx.jpg");
             productInfo.setProductStatus(0);
             productInfo.setCategoryType(1);
