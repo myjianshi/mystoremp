@@ -1,3 +1,6 @@
+
+<%@page language="java" contentType="text/html; UTF-8" pageEncoding="utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -13,7 +16,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4>
                     成功!
-                </h4> <strong>${msg!""}</strong><a href="${url}" class="alert-link">3s后自动跳转</a>
+                </h4> <strong>${msg}</strong><a href="${url}" class="alert-link">3s后自动跳转</a>
             </div>
         </div>
     </div>

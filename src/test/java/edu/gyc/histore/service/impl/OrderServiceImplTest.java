@@ -25,7 +25,7 @@ class OrderServiceImplTest {
     private OrderService orderService;
     @Test
     void create() {
-for(int i=0;i<20;i++){
+for(int i=0;i<10;i++){
     Order Order = new Order();
     Order.setBuyerName("鲁梦");
     Order.setBuyerAddress("贵州大学");
@@ -35,12 +35,12 @@ for(int i=0;i<20;i++){
     //购物车
     List<OrderDetail> orderDetailList = new ArrayList<>();
     OrderDetail o1 = new OrderDetail();
-    o1.setProductId(1L);
+    o1.setProductId(3L);
     o1.setProductQuantity(1+i);
 
     OrderDetail o2 = new OrderDetail();
-    o2.setProductId(2L);
-    o2.setProductQuantity(25-i);
+    o2.setProductId(4L);
+    o2.setProductQuantity(20-i);
 
     orderDetailList.add(o1);
     orderDetailList.add(o2);

@@ -185,13 +185,28 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements Or
         return orderPageInfo;
     }
 
+    @Override
+    public Order findOneOrder(Long orderId) {
+        Order order = getById(orderId);
+        if (order == null) {
+            throw new SellException(ResultEnum.ORDER_NOT_EXIST);
+
+        }
+        List<OrderDetail> orderDetails = orderDetailService.findOrderDetailsByOrderId(orderId);
+        if (orderDetails.isEmpty()) {
+            new SellException(ResultEnum.ORDER_DETAIL_EMPTY);
+        }
+        order.setOrderDetailList(orderDetails);
+        return  order;
+    }
+
 
     @Override
     public Order findOrderOne(String openid, Long orderId) {
         Order order = getById(orderId);
         if (order == null) {
+            throw new SellException(ResultEnum.ORDER_NOT_EXIST);
 
-            return null;
         }
         if(!order.getBuyerOpenid().equalsIgnoreCase(openid)){
             log.error("查询订单时 订单的openid不一致 查询openid={} order openid={}",openid,order.getBuyerOpenid());

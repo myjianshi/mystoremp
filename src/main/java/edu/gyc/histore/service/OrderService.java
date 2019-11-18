@@ -33,6 +33,9 @@ public interface OrderService extends IService<Order> {
     /** 查询订单列表. */
     PageInfo<Order> findList(int start, int size);
 
+
+   Order findOneOrder(Long orderId);
+
     //根据openid查询订单详情
     public Order findOrderOne(String openid, Long orderId);
 }

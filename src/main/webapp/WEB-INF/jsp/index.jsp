@@ -46,8 +46,13 @@
                         <td>${order.getPayStatusEnum().message}</td>
                         <td>${order.createTime}</td>
                         <td>${order.updateTime}</td>
-                        <td><a href="editorder?id=${order.id}">Detail</a> </td>
-                        <td><a href="delorder?id=${order.id}">Cancel</a> </td>
+                        <td><a href="detail?id=${order.id}">Detail</a> </td>
+                        <td>
+                            <c:if test="${order.getOrderStatusEnum().message=='新订单'}">
+                                <a href="cancel?id=${order.id}">Cancel</a>
+                            </c:if>
+
+                        </td>
 
                     </tr>
                 </c:forEach>
