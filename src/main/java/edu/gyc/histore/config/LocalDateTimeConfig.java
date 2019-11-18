@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * 全局时间格式化  去掉 "T"
+ * 全局时间格式化  去掉 "T",只能解决json格式的时间
  *https://www.cnblogs.com/carrychan/p/9883172.html
  * @author kangjia
  * @date 2019/10/31 10:32

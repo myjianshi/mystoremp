@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.gyc.histore.enums.OrderStatusEnum;
 import edu.gyc.histore.enums.PayStatusEnum;
 import edu.gyc.histore.utils.EnumUtil;
+import edu.gyc.histore.utils.MyDateFormater;
 import edu.gyc.histore.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -43,6 +44,16 @@ public class Order implements Serializable {
     @JsonIgnore
     public PayStatusEnum getPayStatusEnum() {
         return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public String getOkCreateTime() {
+        return MyDateFormater.killT(this.createTime); //解决非json格式的time T问题
+    }
+
+    @JsonIgnore
+    public String getOkUpdateTime() {
+        return MyDateFormater.killT(this.updateTime);
     }
     @JsonProperty("orderId")
     private Long id;

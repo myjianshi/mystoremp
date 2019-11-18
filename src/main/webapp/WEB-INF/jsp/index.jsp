@@ -44,8 +44,8 @@
                         <td>${order.orderAmount}</td>
                         <td>${order.getOrderStatusEnum().message}</td>
                         <td>${order.getPayStatusEnum().message}</td>
-                        <td>${order.createTime}</td>
-                        <td>${order.updateTime}</td>
+                        <td>${order.getOkCreateTime()}</td>
+                        <td>${order.getOkUpdateTime()}</td>
                         <td><a href="detail?id=${order.id}">Detail</a> </td>
                         <td>
                             <c:if test="${order.getOrderStatusEnum().message=='新订单'}">
