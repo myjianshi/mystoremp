@@ -9,11 +9,14 @@ import edu.gyc.histore.model.Order;
 import edu.gyc.histore.model.OrderDetail;
 import edu.gyc.histore.model.Product;
 import edu.gyc.histore.dao.ProductDao;
+import edu.gyc.histore.model.ProductCategory;
+import edu.gyc.histore.service.ProductCategoryService;
 import edu.gyc.histore.service.ProductService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -28,6 +31,9 @@ import java.util.List;
 @Slf4j
 public class ProductServiceImpl extends ServiceImpl<ProductDao, Product> implements ProductService {
 
+    @Resource
+    private ProductCategoryService categoryService;
+
     @Override
     public List<Product> findUpAll() {
 
@@ -38,6 +44,16 @@ public class ProductServiceImpl extends ServiceImpl<ProductDao, Product> impleme
     public PageInfo<Product> findAll(int start, int size) {
         PageHelper.startPage(start, size);
         List<Product> products=list();
+
+        for (Product product : products) {
+            List<ProductCategory> categories=categoryService.list();
+            for (ProductCategory category : categories) {
+                if (category.getCategoryType().equals(product.getCategoryType())) {
+                    product.setCategoryTypeName(category.getCategoryName());
+                    break;
+                }
+            }
+        }
 
         PageInfo<Product> data = new PageInfo<>(products);
         return data;

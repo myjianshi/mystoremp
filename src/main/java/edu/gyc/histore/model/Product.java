@@ -3,8 +3,15 @@ package edu.gyc.histore.model;
 import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.gyc.histore.enums.OrderStatusEnum;
+import edu.gyc.histore.enums.ProductStatusEnum;
+import edu.gyc.histore.utils.EnumUtil;
+import lombok.Data;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -14,6 +21,7 @@ import java.io.Serializable;
  * @author ls
  * @since 2019-11-11
  */
+@Data
 public class Product implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -52,15 +60,23 @@ public class Product implements Serializable {
      */
     private Integer productStatus;
 
+    @JsonIgnore   //输出json数据时忽略
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
+
     /**
      * 类目编号
      */
     private Integer categoryType;
 
+    @JsonIgnore
+    private transient String categoryTypeName;
+
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 修改时间
@@ -128,17 +144,12 @@ public class Product implements Serializable {
         return categoryType;
     }
 
+
     public void setCategoryType(Integer categoryType) {
         this.categoryType = categoryType;
     }
 
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
 
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
 
     public LocalDateTime getUpdateTime() {
         return updateTime;

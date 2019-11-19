@@ -2,57 +2,64 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
-<%@include file="/WEB-INF/jsp/common/header.jsp"%>
 
+<%@include file="common/header.jsp"%>
 
 <body>
 <div id="wrapper" class="toggled">
 
 
-    <%@include file="/WEB-INF/jsp/common/nav.jsp"%>
+    <%@include file="common/nav.jsp"%>
 
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row clearfix">
                     <div class="col-md-12 column">
-
+<h1>Hi jsp</h1>
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th>订单Id</th>
+                    <th>商品Id</th>
                     <th>Name</th>
-                    <th>Phone</th>
-                    <th>Address</th>
+                    <th>图片</th>
+                    <th>单价</th>
 
-                    <th>Price</th>
-                    <th>OrderStatus</th>
-                    <th>PayStatus</th>
+                    <th>库存</th>
+                    <th>描述</th>
+                    <th>类目</th>
+
                     <th>CreateTime</th>
                     <th>UpdateTime</th>
 
-                    <th>Detail</th>
-                    <th>Cancel</th>
+                    <th colspan="2">操作</th>
+
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="sp" items="${page.list}" varStatus="st">
                     <tr>
                         <td>${sp.id}</td>
-                        <td>${sp.buyerName}</td>
-                        <td>${sp.buyerPhone}</td>
-                        <td>${sp.buyerAddress}</td>
-                        <td>${sp.orderAmount}</td>
-                        <td>${sp.getOrderStatusEnum().message}</td>
-                        <td>${sp.getPayStatusEnum().message}</td>
-                        <td>${sp.getOkCreateTime()}</td>
-                        <td>${sp.getOkUpdateTime()}</td>
-                        <td><a href="detail?id=${sp.id}">Detail</a> </td>
-                        <td>
-                            <c:if test="${sp.getOrderStatusEnum().message=='新订单'}">
-                                <a href="cancel?id=${sp.id}">Cancel</a>
-                            </c:if>
+                        <td>${sp.productName}</td>
+                        <td><img width="75" height="100" src="/static/imgs/${sp.productIcon}"></td>
+                        <td>${sp.productPrice}</td>
+                        <td>${sp.productStock}</td>
+                        <td>${sp.productDescription}</td>
+                        <td>${sp.categoryTypeName}</td>
+                        <td>${sp.createTime}</td>
+                        <td>${sp.updateTime}</td>
+                        <td><a href="edit?id=${sp.id}">修改</a>
+
+                            <c:choose>
+                                <c:when test="${sp.getProductStatusEnum().message=='上架'}">
+                                    <a href="offsale?id=${sp.id}">下架</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="onsale?id=${sp.id}">上架</a>
+                                </c:otherwise>
+                            </c:choose>
 
                         </td>
+
 
                     </tr>
                 </c:forEach>

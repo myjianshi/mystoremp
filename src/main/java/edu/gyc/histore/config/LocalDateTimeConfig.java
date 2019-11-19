@@ -2,6 +2,7 @@ package edu.gyc.histore.config;
 
 
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,10 +17,12 @@ import java.time.format.DateTimeFormatter;
  * @date 2019/10/31 10:32
  */
 @Configuration
+@Slf4j
 public class LocalDateTimeConfig {
 
     @Bean
     public LocalDateTimeSerializer localDateTimeDeserializer() {
+       // log.info("Execute LocalDateTimeConfig∂");
         return new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 

@@ -98,4 +98,13 @@ class ProductServiceImplTest {
     void offSale() {
         productService.offSale(1L);
     }
+
+    @Test
+    void update() {
+        String[] imgs = {"xr.jpg", "fbb.jpg"};
+        int i=0;
+
+
+       productService.lambdaUpdate().set(Product::getProductIcon,imgs[(++i)%2]).update();
+    }
 }

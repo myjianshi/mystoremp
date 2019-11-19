@@ -23,19 +23,19 @@
             <th>Detail</th>
             <th>Cancel</th>
         </tr>
-        <c:forEach var="order" items="${page.list}" varStatus="st">
+        <c:forEach var="sp" items="${page.list}" varStatus="st">
             <tr>
-                <td>${order.id}</td>
-                <td>${order.buyerName}</td>
-                <td>${order.buyerPhone}</td>
-                <td>${order.buyerAddress}</td>
-                <td>${order.orderAmount}</td>
-                <td>${order.orderStatus}</td>
-                <td>${order.payStatus}</td>
-                <td>${order.createTime}</td>
-                <td>${order.updateTime}</td>
-                <td><a href="editorder?id=${order.id}">Detail</a> </td>
-                <td><a href="delorder?id=${order.id}">Cancel</a> </td>
+                <td>${sp.id}</td>
+                <td>${sp.buyerName}</td>
+                <td>${sp.buyerPhone}</td>
+                <td>${sp.buyerAddress}</td>
+                <td>${sp.orderAmount}</td>
+                <td>${sp.orderStatus}</td>
+                <td>${sp.payStatus}</td>
+                <td>${sp.createTime}</td>
+                <td>${sp.updateTime}</td>
+                <td><a href="editorder?id=${sp.id}">Detail</a> </td>
+                <td><a href="delorder?id=${sp.id}">Cancel</a> </td>
 
             </tr>
         </c:forEach>
