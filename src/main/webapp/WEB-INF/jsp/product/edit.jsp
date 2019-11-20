@@ -34,7 +34,11 @@
                             </div>
                             <div class="form-group">
                                 <label>图片</label>
-                                <img height="100" width="100" src="/static/imgs/${(product.productIcon)}" alt="">
+
+                                <c:if test="${!empty product.productIcon}">
+                                    <img height="100" width="100" src="/static/imgs/${(product.productIcon)}" alt="">
+                                </c:if>
+
                                 <input name="productIcon" type="text" class="form-control" value="${(product.productIcon)}"/>
                             </div>
                             <div class="form-group">
