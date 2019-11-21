@@ -13,6 +13,7 @@
 
         <div id="page-content-wrapper">
             <div class="container-fluid">
+
                 <c:if test="${!empty errors}">
                     <div class="row clearfix">
                         <div class="col-md-12 column">
@@ -25,19 +26,19 @@
                         </div>
                     </div>
                 </c:if>
+
                 <div class="row clearfix">
                     <div class="col-md-6 column">
-                        <form role="form" method="post" action="/seller/category/update">
+                        <form role="form" method="post" action="/whore/reg">
                             <div class="form-group">
                                 <label>名称</label>
-                                <input name="categoryName" type="text" class="form-control" value="${(category.categoryName)}"/>
+                                <input name="name" type="text" class="form-control" value="${(whore.name)}"/>
                             </div>
                             <div class="form-group">
-                                <label>type</label>
-                                <input name="categoryType" type="number" class="form-control" value="${(category.categoryType)}"/>
+                                <label>价格</label>
+                                <input name="price" type="number" class="form-control" value="${(whore.price)}"/>
                             </div>
 
-                    <input hidden type="text" name="categoryId" value="${category.categoryId}">
                     <button type="submit" class="btn btn-default">提交</button>
                     </form>
                     </div>

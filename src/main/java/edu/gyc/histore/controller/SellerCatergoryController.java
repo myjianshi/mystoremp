@@ -3,15 +3,18 @@ package edu.gyc.histore.controller;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import edu.gyc.histore.model.ProductCategory;
 import edu.gyc.histore.service.ProductCategoryService;
+import edu.gyc.histore.utils.FormValidateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -39,8 +42,13 @@ public class SellerCatergoryController {
     }
 
     @PostMapping("/update")
-    public String update(ProductCategory category, Model model) {
-        if (category.getCategoryId() > 0) {
+    public String update(@Valid ProductCategory category, BindingResult bindingResult,Model model) {
+        if (bindingResult.hasErrors()) {
+            FormValidateUtil.formVaildate(bindingResult,model);
+            return "category/edit";
+        }
+
+        if (category.getCategoryId() !=null) {
             categoryService.update(category, Wrappers.<ProductCategory>lambdaQuery().eq(ProductCategory::getCategoryId, category.getCategoryId()));
             model.addAttribute("msg", "类目更新成功！");
         }else {

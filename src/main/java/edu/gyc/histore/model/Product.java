@@ -8,7 +8,12 @@ import edu.gyc.histore.enums.OrderStatusEnum;
 import edu.gyc.histore.enums.ProductStatusEnum;
 import edu.gyc.histore.utils.EnumUtil;
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.util.Date;
@@ -32,17 +37,22 @@ public class Product implements Serializable {
     /**
      * 商品名称
      */
-
+@NotBlank(message = "商品名不为空")
     private String productName;
 
     /**
      * 单价
      */
+    @NotNull(message = "商品价格不为空")
+    @DecimalMin(value = "0.01",message = "商品最小值为0.01元")
+    @DecimalMax(value = "10000",message = "商品最大值为10000元")
     private BigDecimal productPrice;
 
     /**
      * 库存
      */
+    @NotNull(message = "商品库存不为空")
+    @Range(min = 1,max = 10000,message = "商品库存量介于1-10000")
     private Integer productStock;
 
     /**
@@ -58,6 +68,7 @@ public class Product implements Serializable {
     /**
      * 商品状态,0正常1下架
      */
+
     private Integer productStatus;
 
     @JsonIgnore   //输出json数据时忽略
@@ -68,6 +79,7 @@ public class Product implements Serializable {
     /**
      * 类目编号
      */
+    @NotNull(message = "类型编号不为空")
     private Integer categoryType;
 
     @JsonIgnore

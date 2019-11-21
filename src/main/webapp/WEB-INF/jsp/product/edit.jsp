@@ -13,6 +13,19 @@
 
         <div id="page-content-wrapper">
             <div class="container-fluid">
+
+                <c:if test="${!empty errors}">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <div class="alert alert-dismissable alert-warning">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4>
+                                    表单校验错误!
+                                </h4> <strong>${errors}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
                 <div class="row clearfix">
                     <div class="col-md-6 column">
                         <form role="form" method="post" action="/seller/product/update">

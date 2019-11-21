@@ -8,15 +8,18 @@ import edu.gyc.histore.model.Product;
 import edu.gyc.histore.model.ProductCategory;
 import edu.gyc.histore.service.ProductCategoryService;
 import edu.gyc.histore.service.ProductService;
+import edu.gyc.histore.utils.FormValidateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -108,7 +111,14 @@ public class SellerProductController {
     }
 
     @PostMapping("/update")
-    public String update(Product product, Model model) {
+    public String update(@Valid Product product, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            FormValidateUtil.formVaildate(bindingResult, model);
+            //表单字段校验错误时，要返回类目数据，否则类目下拉框无数据
+            List<ProductCategory> productCategories = productCategoryService.list();
+            model.addAttribute("categoryList", productCategories);
+            return "product/edit";
+        }
         if (product.getId() != null) {
             model.addAttribute("msg", "更新成功");
         }else {

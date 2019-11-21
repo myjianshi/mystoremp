@@ -2,6 +2,11 @@ package edu.gyc.histore.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
@@ -23,11 +28,15 @@ public class ProductCategory implements Serializable {
     /**
      * 类目名字
      */
+    @NotBlank(message = "类目名字不为空")
+    @Size(min = 2,max = 6,message = "名字介于2-6字符")
     private String categoryName;
 
     /**
      * 类目编号
      */
+    @NotNull(message = "Type不为空")
+    @Range(min = 1,max = 10000,message = "TypeId 介于1-10000之间")
     private Integer categoryType;
 
     /**
